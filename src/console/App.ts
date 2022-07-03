@@ -1,8 +1,10 @@
 import { AppModel } from '../model/AppModel.ts';
+import { RandomGenerator } from '../model/RandomGenerator.ts';
 
 export class App {
   public static main() {
-    const model = new AppModel();
+    const generator = new RandomGenerator();
+    const model = new AppModel(generator);
 
     App.runLoop(model);
   }
@@ -10,9 +12,9 @@ export class App {
   private static async runLoop(model: AppModel): Promise<void> {
     while (!model.isCompleted) {
       await model.writeOutput();
-      const input = await model.readInput();
+      await model.readInput();
 
-      model.selectGameMode(input);
+      model.process();
     }
   }
 }

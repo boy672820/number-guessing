@@ -1,0 +1,3 @@
+interface PositiveIntegerGenerator {
+  generateLessThanOrEqualToHundred(): number;
+}
