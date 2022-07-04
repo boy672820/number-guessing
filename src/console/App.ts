@@ -10,11 +10,14 @@ export class App {
   }
 
   private static async runLoop(model: AppModel): Promise<void> {
+    let i = 0;
     while (!model.isCompleted) {
       await model.writeOutput();
       await model.readInput();
 
       model.process();
+
+      console.log(i += 1);
     }
   }
 }
